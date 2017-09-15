@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Unpaid Child Care | Map 2011</title>
+    <link rel="stylesheet" href="./style.css">
+        <meta charset='utf-8' />
+    <title> Map</title>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css' rel='stylesheet'>
+    <script src="data2.js"></script>
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div id="branding">
+          <h1>Unpaid Child Care Australia</h1>
+        </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <div class="dropdown">
+            <button class="dropbtn">Map</button>
+            <div class="dropdown-content">
+              <a href="map.html">2016</a>
+              <a href="map2011.html">2011</a>
+            </div>
+          </div>
+        </ul>
+      </nav>
+      </div>
+    </header>
+
+    <section id="main">
+      <div class="container">
+        <article id="main-col">
+          <h1 class="page-title">Map</h1>
+          <div id='map'></div>
+            <script>
+            mapboxgl.accessToken = 'pk.eyJ1IjoiamV5cmV5bWV5IiwiYSI6ImNqNnZuOWlydzEzYXUzM280emZiNDNka2QifQ.NyGBi-biiKEbN8vhzqZojg';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/light-v9',
+    center: [151, -33.815],
+    zoom: 10,
+    pitch: 40,
+    bearing: 20
+});
+
+map.on('load', function() {
+
+    map.addLayer({
+        'id': 'room-extrusion',
+        'type': 'fill-extrusion',
+        'source': {
+            // Geojson Data source used in vector tiles, documented at
+            // https://gist.github.com/ryanbaumann/a7d970386ce59d11c16278b90dde094d
+            'type': 'geojson',
+            'data': data
+        },
+        'paint': {
+            // See the Mapbox Style Spec for details on property functions
+            // https://www.mapbox.com/mapbox-gl-style-spec/#types-function
+            'fill-extrusion-color': {
+                // Get the fill-extrusion-color from the source 'color' property.
+                'property': 'PDvTP',
+                "stops":[
+                [0, '#E2B49A'],
+                [1, '#E9C77B']
+                ]
+            },
+            'fill-extrusion-height': {
+                // Get fill-extrusion-height from the source 'height' property.
+                'property': 'MalFem',
+                "stops":[
+                [1, 0],
+                [35, 65535]
+                ]
+            },
+            'fill-extrusion-base': 0,
+                // Get fill-extrusion-base from the source 'base_height' property.
+            },
+            // Make extrusions slightly opaque for see through indoor walls.
+            'fill-extrusion-opacity': 0.2
+    
+    });
+});
+
+            </script>
+            <style>
+              #map {position: absolute; top: 180px; left: 0%; bottom: 0; width: 70%;}
+            </style>
+        </article>
+
+        <aside id="sidebar">
+          <div class="dark">
+          <sidebar style="position:absolute; top: 200px; left: 71%; text-align: left;">
+            <h3>Information</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec varius auctor lacus nec feugiat. Phasellus sit amet ex ipsum. Praesent pharetra tincidunt tempor. Etiam velit eros, dapibus eget porta in, lacinia et magna</p>
+            <h4> Latte Line </h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec varius auctor lacus nec feugiat. Phasellus sit amet ex ipsum. Praesent pharetra tincidunt tempor. Etiam velit eros, dapibus eget porta in, lacinia et magna
+            <h4> Latte Line </h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec varius auctor lacus nec feugiat. Phasellus sit amet ex ipsum. Praesent pharetra tincidunt tempor. Etiam velit eros, dapibus eget porta in, lacinia et magna</p>  
+            <h4> Latte Line </h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec varius auctor lacus nec feugiat. Phasellus sit amet ex ipsum. Praesent pharetra tincidunt tempor. Etiam velit eros, dapibus eget porta in, lacinia et magna</p>            
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </body>
+</html>
